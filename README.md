@@ -57,10 +57,10 @@ This repo wires **Playwright MCP** (browser automation) with a **Filesystem MCP*
 ## Install
 
 ```bash
-# Python deps (choose one)
-uv add "mcp[cli]"          # recommended
+# Python dependency (choose one)
+uv pip install -r requirements.txt  # recommended
 # or
-pip install "mcp[cli]"
+pip install -r requirements.txt
 
 # No repo-level install is needed for MCP servers (run via npx below)
 ```

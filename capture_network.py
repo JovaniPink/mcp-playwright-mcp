@@ -16,7 +16,7 @@ Prerequisite:
 
 Install:
     # https://github.com/modelcontextprotocol/python-sdk
-    uv add "mcp[cli]"  # or: pip install "mcp[cli]"
+    uv pip install -r requirements.txt  # or: pip install -r requirements.txt
 
 Usage:
     uv run capture_network.py \
@@ -277,9 +277,9 @@ class NetworkCaptureClient:
             tools = await client_session.list_tools()
             return any(
                 tool_descriptor.name == tool_name for tool_descriptor in tools.tools
+            )
         except Exception as exc:
             LOGGER.warning("Error checking tool availability for '%s': %s", tool_name, exc)
-            return False
             return False
 
     async def capture_network_requests(
@@ -492,6 +492,8 @@ async def run_async(argv: List[str]) -> int:
                 )
             else:
                 filtered_requests = captured_requests
+
+            saved_output_path = await capture_client.save_jsonl(
                 filtered_requests, cli_args.out
             )
             # Print the final path for shell pipelines
